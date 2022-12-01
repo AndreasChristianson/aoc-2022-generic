@@ -1,0 +1,12 @@
+{
+  "name": "aco-2022-day1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "start": "node index.js"
+  }
+,"type": "module"
+}
