@@ -12,4 +12,4 @@ make_day2:
 	echo "\n\n#### day 2\n"
 	cd day2/aoc-2022-day2;                                                               \
 	mvn package;                                                                         \
-	java -cp target/aoc-2022-day2-1.0-SNAPSHOT.jar com.pessimistic.App;   
+	java -cp target/aoc-2022-day2-1.0-SNAPSHOT.jar com.pessimistic.App;
