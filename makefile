@@ -1,4 +1,4 @@
-all: make_day1 make_day2 make_day1_gps
+all: make_day1 make_day2 make_day1_gps make_day3
 
 .PHONY: make_day1
 make_day1:
@@ -20,3 +20,10 @@ make_day2:
 	cd day2/aoc-2022-day2;                                                               \
 	mvn package;                                                                         \
 	java -cp target/aoc-2022-day2-1.0-SNAPSHOT.jar com.pessimistic.App;
+
+.PHONY: make_day3
+make_day3:
+	echo "\n\n#### day 3\n"
+	cd day3;                                                               \
+	mvn package;                                                                         \
+	kotlin -cp target/day3-1.0-SNAPSHOT.jar com.pessimistic.HelloKt;
