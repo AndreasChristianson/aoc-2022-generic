@@ -38,7 +38,7 @@ async function parseToObject() {
 
 await parseToObject()
 
-console.log(util.inspect(values, true, null))
+// console.log(util.inspect(values, true, null))
 console.log("childCount raw: "+childCount)
 console.log("childCount deduped: "+Object.keys(paths).length)
 
@@ -137,7 +137,7 @@ const buildBackLinks = (node,backLink) => {
   }
 }
 buildBackLinks(graph,null)
-console.log(util.inspect(graph, true, null))
+// console.log(util.inspect(graph, true, null))
 
 const childrenNeedPresents = (node) => {
   if(node.child && ! node.visited){
@@ -164,9 +164,9 @@ const findNearestChildDown = (node, distanceSoFar) => {
     var potential = findNearestChildDown(childNode, distanceSoFar+1)
     if(potential.distance<found.distance ||(potential.distance==found.distance &&potential.path<found.path)){
       if(potential.distance==found.distance){
-        console.log("more than one min distance down")
-        console.log("potential: "+potential.path+"("+potential.name+")")
-        console.log("found: "+found.path+"("+found.name+")")
+        // console.log("more than one min distance down")
+        // console.log("potential: "+potential.path+"("+potential.name+")")
+        // console.log("found: "+found.path+"("+found.name+")")
       }
       found = potential
     }
@@ -182,9 +182,9 @@ const findNearestChild = (node, distanceSoFar) => {
     var potential = findNearestChildDown(node, distanceSoFar)
     if(potential.distance<found.distance ||(potential.distance==found.distance &&potential.path<found.path)){
       if(potential.distance==found.distance){
-        console.log("more than one min distance up")
-        console.log("potential: "+potential.path+"("+potential.name+")")
-        console.log("found: "+found.path+"("+found.name+")")
+        // console.log("more than one min distance up")
+        // console.log("potential: "+potential.path+"("+potential.name+")")
+        // console.log("found: "+found.path+"("+found.name+")")
       }
       found = potential
     }
@@ -195,11 +195,11 @@ var totalStops = 0
 var cursor = graph
 childCount=0
 while (true){
-  console.log("at "+cursor.name)
-  console.log("count "+totalStops)
+  // console.log("at "+cursor.name)
+  // console.log("count "+totalStops)
   const {distance, nodeWithChild}=findNearestChild(cursor,0)
   if(nodeWithChild!=null){
-    console.log("moving "+distance+" to "+nodeWithChild.name)
+    // console.log("moving "+distance+" to "+nodeWithChild.name)
     childCount++
     totalStops+=distance
     cursor= nodeWithChild
