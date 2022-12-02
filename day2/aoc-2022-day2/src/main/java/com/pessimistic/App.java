@@ -99,11 +99,8 @@ public class App {
           .map(line -> format.matcher(line))
           .peek(Matcher::find)
           .map(m -> new AbstractMap.SimpleEntry<RPC, Outcome>(RPC.fromThem(m.group(1)), Outcome.valueOf(m.group(2))))
-          .mapToInt(round -> {
-            RPC myThrow = round.getValue().getThrow(round.getKey());
-            System.out.println(myThrow);
-            return myThrow.getOutComeScore(round.getKey())+myThrow.score;
-          })
+          .map(round -> new AbstractMap.SimpleEntry<RPC, RPC>(round.getKey(), round.getValue().getThrow(round.getKey())))
+          .mapToInt(round -> round.getValue().getOutComeScore(round.getKey()) + round.getValue().score)
           .sum();
       System.out.println(score);
     }
