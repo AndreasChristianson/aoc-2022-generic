@@ -1,9 +1,16 @@
-all: make_day1 make_day2
+all: make_day1 make_day2 make_day1_gps
 
 .PHONY: make_day1
 make_day1:
 	echo "\n\n#### day 1\n"
 	cd day1; \
+	npm i;   \
+	npm start;
+
+.PHONY: make_day1_gps
+make_day1_gps:
+	echo "\n\n#### day 1 gps\n"
+	cd day1-gps; \
 	npm i;   \
 	npm start;
   
