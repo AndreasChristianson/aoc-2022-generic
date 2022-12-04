@@ -26,8 +26,8 @@ async function parse() {
 }
 
 await parse()
-values.sort((left,right) => right-left)
+values.sort((left, right) => right - left)
 
 stdout.write(values[0] + '\n')
-stdout.write(values.slice(0,3).reduce((acc,curr)=>acc+curr,0) + '\n')
+stdout.write(values.slice(0, 3).reduce((acc, curr) => acc + curr, 0) + '\n')
 
