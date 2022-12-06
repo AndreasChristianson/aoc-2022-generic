@@ -35,7 +35,7 @@ make_day5:
 	cd day5;    \
 	make run;
 
-	.PHONY: make_day6
+.PHONY: make_day6
 make_day6:
 	cd day6; \
 	sbt run

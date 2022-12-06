@@ -1,15 +1,22 @@
 package example
 import scala.io.Source
+import scala.util.control.Breaks._
 
-// https://docs.scala-lang.org/tour/regular-expression-patterns.html
 object Hello extends Greeting with App {
-
-  val source = Source.fromFile("test.txt")
-  for (line <- source.getLines())
+  val source = Source.fromFile("input.txt")
+  for (line <- source.getLines()) {
     println(line)
-  source.close()
-}
+    var i = 13;
+    breakable {
+      while (true) {
+        i = i + 1
+        if (line.subSequence(i - 14, i).chars().distinct().count() == 14) {
+          println(i)
+          break
+        }
+      }
+    }
 
-trait Greeting {
-  lazy val greeting: String = "hello"
+  }
+  source.close()
 }
