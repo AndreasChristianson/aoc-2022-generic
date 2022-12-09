@@ -2,7 +2,7 @@ package example
 import scala.io.Source
 import scala.util.control.Breaks._
 
-object Hello extends Greeting with App {
+object Hello extends App {
   val source = Source.fromFile("input.txt")
   for (line <- source.getLines()) {
     println(line)
