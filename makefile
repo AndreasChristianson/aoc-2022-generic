@@ -1,4 +1,4 @@
-all: make_day1 make_day2 make_day1_gps make_day3 make_day4 make_day5 make_day6 make_day7
+all: make_day1 make_day2 make_day1_gps make_day3 make_day4 make_day5 make_day6 make_day7 make_day8 make_day9
 
 .PHONY: make_day1
 make_day1:
@@ -43,5 +43,15 @@ make_day6:
 .PHONY: make_day7
 make_day7:
 	cd day7;                                                         \
-	mvn package;                                                     \
-	kotlin -cp target/day7-1.0-SNAPSHOT.jar com.pessimistic.HelloKt;
+	mvn test;
+
+.PHONY: make_day8
+make_day8:
+	cd day8;                                                         \
+	ruby lib/part1.rb;                                               \
+	ruby lib/part2.rb;
+
+.PHONY: make_day9
+make_day9:
+	cd day9;   \
+	cargo run;
