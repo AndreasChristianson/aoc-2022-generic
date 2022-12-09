@@ -63,12 +63,6 @@ for row in 0..height - 1
   end
 end
 
-for row in 0..height - 1
-  for col in 0..width - 1
-    print "#{grid[[row, col]].view}|"
-  end
-  puts
-end
 puts grid
     .map { |key, value| value.view }
     .max()
