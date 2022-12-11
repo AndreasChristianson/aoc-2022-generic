@@ -124,7 +124,7 @@ for round = 1:10000
       push!(monkeys[newMonkey+1].items, item)
     end
   end
-  if round % 1000 == 0 || round == 20  || round == 1
+  if round % 1000 == 0 || round == 20 || round == 1
     @debug "after round $(round)"
     for index = 1:length(monkeys)
       @info "monkey $(index): $(monkeys[index].inspectionCount)"
