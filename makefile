@@ -1,4 +1,4 @@
-all: make_day1 make_day2 make_day1_gps make_day3 make_day4 make_day5 make_day6 make_day7 make_day8 make_day9 make_day10 make_day11 make_day12
+all: make_day1 make_day2 make_day1_gps make_day3 make_day4 make_day5 make_day6 make_day7 make_day8 make_day9 make_day10 make_day11 make_day12 make_day13
 
 .PHONY: make_day1
 make_day1:
@@ -70,3 +70,8 @@ make_day11:
 make_day12:
 	cd day12;   \
 	dotnet run;
+
+.PHONY: make_day13
+make_day13:
+	cd day13;   \
+	elixir day13.exs;
