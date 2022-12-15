@@ -1,4 +1,4 @@
-all: make_day1 make_day2 make_day1_gps make_day3 make_day4 make_day5 make_day6 make_day7 make_day8 make_day9 make_day10 make_day11 make_day12 make_day13
+all: make_day1 make_day2 make_day1_gps make_day3 make_day4 make_day5 make_day6 make_day7 make_day8 make_day9 make_day10 make_day11 make_day12 make_day13 make_day14 make_day15
 
 .PHONY: make_day1
 make_day1:
@@ -75,3 +75,13 @@ make_day12:
 make_day13:
 	cd day13;   \
 	elixir day13.exs;
+
+.PHONY: make_day14
+make_day14:
+	cd day14;   \
+	go run sand.go;
+
+.PHONY: make_day15
+make_day15:
+	cd day15;   \
+	lua day15.lua input.txt 2000000 3000000 4000000;

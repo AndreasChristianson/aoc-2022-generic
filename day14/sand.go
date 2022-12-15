@@ -100,21 +100,27 @@ func main() {
 	grid := toGrid(points)
 	// grid[point(500, 0)] = State{material: "+"}
 	debugGrid(grid)
+	gridWithFloor := make(map[Point]State)
+	for k, v := range grid {
+		gridWithFloor[k] = v
+	}
 	maxDepth := 0
 	for k := range grid {
 		maxDepth = max(maxDepth, k.depth)
 	}
-	for dropSandWithFloor(grid, point(500, 0), maxDepth) {
+	sandCount := 0
+	for dropSandWithOutFloor(grid, point(500, 0), maxDepth) {
+		sandCount++
 	}
 	debugGrid(grid)
-
-	sandCount := 0
-	for _, v := range grid {
-		if v == sand() {
-			sandCount++
-		}
-	}
 	fmt.Println(fmt.Sprintf("sand count without floor: %d", sandCount))
+	sandCount = 1
+	for dropSandWithFloor(gridWithFloor, point(500, 0), maxDepth) {
+		sandCount++
+	}
+	debugGrid(gridWithFloor)
+	fmt.Println(fmt.Sprintf("sand count with floor: %d", sandCount))
+
 }
 func getLines(file string) []string {
 
