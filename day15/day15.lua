@@ -53,16 +53,11 @@ print("covered at row " .. row .. ": ", Dump(covered))
 
 local max = tonumber(arg[4])
 local min = tonumber(arg[3])
-local last_time = nil
 for curr_row = min, max do
   local curr_ordered_sensors_at_row = Get_sensors_for_row(sensors, curr_row)
   local uncovered = first_uncovered(curr_ordered_sensors_at_row, max)
   if uncovered then
     print("found the distress at row " .. curr_row .. ": ", Dump(uncovered))
-  end
-  local now = os.time()
-  if last_time ~= now then
-    print(curr_row .. "...")
-    last_time = now
+    break
   end
 end
