@@ -1,4 +1,4 @@
-all: make_day1 make_day2 make_day1_gps make_day3 make_day4 make_day5 make_day6 make_day7 make_day8 make_day9 make_day10 make_day11 make_day12 make_day13 make_day14 make_day15
+all: make_day1 make_day2 make_day1_gps make_day3 make_day4 make_day5 make_day6 make_day7 make_day8 make_day9 make_day10 make_day11 make_day12 make_day13 make_day14 make_day15 make_day16 make_day17
 
 .PHONY: make_day1
 make_day1:
@@ -42,13 +42,13 @@ make_day6:
 
 .PHONY: make_day7
 make_day7:
-	cd day7;                                                         \
+	cd day7;   \
 	mvn test;
 
 .PHONY: make_day8
 make_day8:
-	cd day8;                                                         \
-	ruby lib/part1.rb;                                               \
+	cd day8;               \
+	ruby lib/part1.rb;     \
 	ruby lib/part2.rb;
 
 .PHONY: make_day9
@@ -85,3 +85,12 @@ make_day14:
 make_day15:
 	cd day15;   \
 	lua day15.lua input.txt 2000000 3000000 4000000;
+
+.PHONY: make_day16
+make_day16:
+	echo "swift sucks";
+
+.PHONY: make_day17
+make_day17:
+	cd day17;  \
+	dart run;
