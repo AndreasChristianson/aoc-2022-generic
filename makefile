@@ -1,4 +1,4 @@
-all: make_day1 make_day2 make_day1_gps make_day3 make_day4 make_day5 make_day6 make_day7 make_day8 make_day9 make_day10 make_day11 make_day12 make_day13 make_day14 make_day15 make_day16 make_day17 make_day18 make_day20 make_day21
+all: make_day1 make_day2 make_day1_gps make_day3 make_day4 make_day5 make_day6 make_day7 make_day8 make_day9 make_day10 make_day11 make_day12 make_day13 make_day14 make_day15 make_day16 make_day17 make_day18 make_day19 make_day20 make_day21 make_day22 make_day23
 
 .PHONY: make_day1
 make_day1:
@@ -100,6 +100,11 @@ make_day18:
 	cd day18;  \
 	dotnet run test.txt;
 
+.PHONY: make_day19
+make_day19:
+	cd day19;  \
+	dart run bin/day19.dart test.txt 32;
+
 .PHONY: make_day20
 make_day20:
 	cd day20;  \
@@ -109,3 +114,13 @@ make_day20:
 make_day21:
 	cd day21;  \
 	./day21.sh test.txt;
+
+.PHONY: make_day22
+make_day22:
+	cd day22;  \
+	dart run bin/day22.dart test.txt 4;
+
+.PHONY: make_day23
+make_day23:
+	cd day23;  \
+	deno run --allow-read  main.ts test.txt;
