@@ -41,48 +41,12 @@ class BluePrint {
       }
       ret = ret.change(costType, maxCost);
     }
-    // print(ret);
     return ret;
   }
 
   Resources cost(RT newRobot) {
     return costs[newRobot]!;
   }
-
-  // Resources recur(int maxDepth, Resources resources, Resources robots) {
-  //   if (maxDepth == 0) {
-  //     return resources;
-  //   }
-  //   final patResouces = Resources.fromMap(resources.map);
-  //   patResouces.add(robots);
-  //   var bestOption = recur(maxDepth - 1, patResouces, robots);
-  //   if (resources.has(costs[RT.geode]!)) {
-  //     final newResources = Resources.fromMap(resources.map);
-  //     newResources.subtract(costs[RT.geode]!);
-  //     newResources.add(robots);
-  //     final newRobots = Resources.fromMap(robots.map);
-  //     newRobots.change(RT.geode, 1);
-  //     final potential = recur(maxDepth - 1, newResources, newRobots);
-  //     if (potential.get(RT.geode) > bestOption.get(RT.geode)) {
-  //       bestOption = potential;
-  //     }
-  //   } else {
-  //     for (var type in RT.values) {
-  //       if (resources.has(costs[type]!)) {
-  //         final newResources = Resources.fromMap(resources.map);
-  //         newResources.subtract(costs[type]!);
-  //         newResources.add(robots);
-  //         final newRobots = Resources.fromMap(robots.map);
-  //         newRobots.change(type, 1);
-  //         final potential = recur(maxDepth - 1, newResources, newRobots);
-  //         if (potential.get(RT.geode) > bestOption.get(RT.geode)) {
-  //           bestOption = potential;
-  //         }
-  //       }
-  //     }
-  //   }
-  //   return bestOption;
-  // }
 }
 
 class Resources {
@@ -166,66 +130,6 @@ class Factory {
         lastState = null,
         built = null;
 
-  // void iterate() {
-  //   RT? newRobot = makeNewRobot(RT.geode);
-  //   for (final rt in RT.values) {
-  //     final amount = robots[rt]!;
-  //     if (amount > 0) {
-  //       print("produced $amount $rt");
-  //     }
-  //     resources.change(rt, amount);
-  //   }
-  //   if (newRobot != null) {
-  //     robots[newRobot] = robots[newRobot]! + 1;
-  //   }
-  // }
-
-  // RT? makeNewRobot(RT target) {
-  //   final timeToBeat =
-  //       minutesUntilCanAfford(target, resources, Resources.fromMap(robots));
-  //   if (timeToBeat == 0) {
-  //     resources.subtract(bluePrint.costs[target]!);
-  //     print("begin making a $target robot");
-  //     return target;
-  //   }
-  //   print("time to make a $target: $timeToBeat mins");
-  //   final requirementsByCost = bluePrint.costs[target]!.map.entries
-  //       .where((kv) => kv.value > 0)
-  //       .where((kv) => kv.key != target)
-  //       .toList();
-  //   requirementsByCost.sort((l, r) => (r.value / robots[r.key]!.toDouble() -
-  //           l.value / robots[l.key]!.toDouble())
-  //       .sign
-  //       .toInt());
-  //   for (var kv in requirementsByCost) {
-  //     final type = kv.key;
-  //     final hypotheticalRobots = Map<RT, int>.from(robots);
-  //     final hypotheticalResources = Resources.fromMap(resources.map);
-  //     print("what if we had another ${type} robot...");
-  //     hypotheticalResources.subtract(bluePrint.costs[type]!);
-  //     hypotheticalRobots[type] = hypotheticalRobots[type]! + 1;
-  //     final augmentedTime = minutesUntilCanAfford(
-  //         target, hypotheticalResources, Resources.fromMap(hypotheticalRobots));
-  //     print("augmented time to make a $target: $augmentedTime mins");
-  //     if (augmentedTime <= timeToBeat) {
-  //       print("lets build one..");
-  //       return makeNewRobot(type);
-  //     }
-  //     print("roi too low.");
-  //   }
-  //   print("nothing we can make that might speed this up. bidding my time.");
-  //   return null;
-  // }
-
-  // RT? makeNewNonOreRobot() {
-  //   for (var rt in RT.values.reversed.where((rt) => rt != RT.ore)) {
-  //     if (canAfford(rt)) {
-  //       return rt;
-  //     }
-  //   }
-  //   return null;
-  // }
-
   int quality() {
     return bluePrint.number * resources.get(RT.geode);
   }
@@ -259,23 +163,8 @@ class Factory {
     if (canAfford(RT.geode)) {
       return [iterate(RT.geode)];
     }
-    final List<Factory> results = [];
-    if (shouldBuild(RT.obsidian)) {
-      // if (resources.get(RT.ore) < bluePrint.getMaxCost(RT.ore) ||
-      //     resources.get(RT.clay) < bluePrint.getMaxCost(RT.clay)) {
-      //   return [iterate(RT.obsidian), iterate(null)];
-      // }
-      // return [iterate(RT.obsidian)];
-      results.add(iterate(RT.obsidian));
-    }
-
-    if (shouldBuild(RT.clay)) {
-      results.add(iterate(RT.clay));
-    }
-
-    if (shouldBuild(RT.ore)) {
-      results.add(iterate(RT.ore));
-    }
+    final List<Factory> results =
+        [RT.obsidian, RT.clay, RT.ore].where(shouldBuild).map(iterate).toList();
 
     //could be saving up for something
     if (resources.get(RT.ore) < bluePrint.getMaxCost(RT.ore) ||
@@ -286,40 +175,9 @@ class Factory {
     return results;
   }
 
-  // RT? tryToMake(RT currentTarget) {
-  //   if (canAfford(currentTarget)) {
-  //     return currentTarget;
-  //   }
-  //   print("unable to afford a $currentTarget robot");
-
-  //   final missing = resources.subtract(bluePrint.cost(currentTarget));
-  //   RT? missingMost;
-  //   int negativeAmount = 0;
-  //   for (var rt in RT.values) {
-  //     if (missing.get(rt) < negativeAmount) {
-  //       missingMost = rt;
-  //       negativeAmount = missing.get(rt);
-  //     }
-  //   }
-  //   print("$missingMost was the resource we needed most");
-
-  //   if (missingMost != null && missingMost != currentTarget) {
-  //     print("lets see if we can make a $missingMost robot..");
-
-  //     return tryToMake(missingMost);
-  //   }
-  //   return null;
-  // }
-
-  // List<Factory> iterateBest() {
-  //   return [iterate(tryToMake(RT.geode)), iterate(null)];
-  // }
-
   Factory iterate(RT? newRobot) {
-    // lastState = null;
     if (newRobot != null) {
-      assert(canAfford(newRobot));
-      // print("making $newRobot robot");
+      // assert(canAfford(newRobot));
 
       return Factory(
           bluePrint,

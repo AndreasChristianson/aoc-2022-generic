@@ -11,7 +11,6 @@ void main(List<String> arguments) async {
   final rawFileContents = await readFile(file);
   print(rawFileContents);
   final bluePrints = rawFileContents.map(parseBluePrint).toList();
-  // print(bluePrints);
   final factories = bluePrints
       .map(
         (bluePrint) => Factory.start(bluePrint),
@@ -35,12 +34,11 @@ void main(List<String> arguments) async {
             current.robots.get(RT.geode);
       }
       if ((maxGeodeRobotPerGeneration[current.minute - 1] ?? 0) >
-          current.robots.get(RT.geode) + 2) {
-        //way behind, give up
+          current.robots.get(RT.geode) + 1) {
+        //way behind; give up
         continue;
       }
       if (current.minute >= minutes) {
-        // print("finished $current");
         if (best == null || best.quality() < current.quality()) {
           best = current;
         }
@@ -51,7 +49,6 @@ void main(List<String> arguments) async {
           print("ongoing... $itCount $current");
         }
         itCount++;
-        // print("${itCount++} $current");
         queue.addAll(current.iterateAll());
       }
     }
