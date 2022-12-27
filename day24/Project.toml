@@ -1,0 +1,4 @@
+name = "day24"
+uuid = "c345805d-f4cd-49dc-a179-468a4188cc14"
+authors = ["Andreas Christianson <achristianson@pessimistic-it.com>"]
+version = "0.1.0"
