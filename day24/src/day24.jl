@@ -8,14 +8,11 @@ input = filter(
   str -> length(str) > 0,
   readlines(ARGS[1])
 )
-@info "initial input :\n$(join(input,"\n"))"
 
 valley = parse_valley(input)
 @info valley
 
 function traverse(valley::Valley, start::Position, finish::Position)
-  startingPos = Position(1, 0)
-  endingPos = Position(valley.x, valley.y + 1)
   positions = [start]
 
   min = 0
@@ -25,7 +22,6 @@ function traverse(valley::Valley, start::Position, finish::Position)
     validPositions = Set{Position}()
     for position in positions
       if in(position, spots)
-        # @debug "found valid position @ $(position)"
         push!(validPositions, position)
         for dir in instances(Direction)
           push!(newPositions, direction_to_offset(dir) + position)
@@ -33,9 +29,7 @@ function traverse(valley::Valley, start::Position, finish::Position)
         push!(newPositions, position)
       end
     end
-    # @info valley
-    @info "min $(min): $(length(validPositions)) valid positions found"
-    # @debug validPositions
+    @debug "min $(min): $(length(validPositions)) valid positions found"
     min = min + 1
     valley = move_storms(valley)
     positions = newPositions

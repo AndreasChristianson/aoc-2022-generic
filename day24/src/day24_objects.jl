@@ -181,7 +181,7 @@ function Base.show(io::IO, v::Valley)
       if stormCount == 1
         ret = "$(ret)$(to_string(dir))"
       elseif stormCount>1
-        ret = "$(ret)$(stormCount%10)"
+        ret = "$(ret)$(stormCount)"
       elseif pos in spots
         ret = "$(ret)."
       elseif pos.x<1 || pos.x>valley.x ||pos.y<1 || pos.y>valley.y
